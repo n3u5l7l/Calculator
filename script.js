@@ -34,3 +34,11 @@ function operate(num1, operation, num2)
     return add(num1,num2);
   }
 }
+
+const containerWidth = parseInt(document.querySelector(".calculator").clientWidth);
+const containerHeight = parseInt(document.querySelector(".buttons").clientHeight);
+console.log(containerHeight);
+console.log(containerWidth)
+
+document.querySelectorAll("button").forEach(button=>button.style.width=`${containerWidth/4}px`);
+document.querySelectorAll("button").forEach(button=>button.style.height=`${containerHeight/5}px`);
