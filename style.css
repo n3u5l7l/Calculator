@@ -52,3 +52,6 @@ body{
 .firstrow, .secondrow, .thirdrow, .fourthrow, .fifthrow{
     display:flex;
 }
+button{
+    font-size:25px;
+}
