@@ -102,6 +102,61 @@ function starts(e)
       document.querySelector(".display").textContent = number1+ "-";
     }
   }
+  else
+  {
+    let inputs;
+    if (!e.keyCode)
+    {
+      inputs = Number(this.textContent);
+    }
+    else if (e.keyCode)
+    {
+      inputs = Number(document.querySelector(`[data-key='${e.keyCode}']`).textContent);
+    }
+    document.querySelector(".display").textContent+=inputs;
+    if(number1turn)
+    {
+      if (number1)
+      {
+        let operaters;
+        switch(operations)
+        {
+          case 'mulitply':operaters='*';break;
+          case 'divide':operaters='/';break;
+          case 'add':operaters='+';break;
+          case 'subtract':operaters='-';break;
+          default: operaters=operaters;
+        }
+        let stringNums = document.querySelector(".display").textContent.split(operaters);
+        number1 = Number(stringNums[0]);
+      }
+      else
+      {
+        number1 = inputs;
+      }
+    }
+    else if (number2turn)
+    {
+      if (number2)
+      {
+        let operaters;
+        switch(operations)
+        {
+          case 'mulitply':operaters='*';break;
+          case 'divide':operaters='/';break;
+          case 'add':operaters='+';break;
+          case 'subtract':operaters='-';break;
+          default: operaters=operaters;
+        }
+        let stringNums = document.querySelector(".display").textContent.split(operaters);
+        number2 = Number(stringNums[1]);
+      }
+      else
+      {
+        number2 = inputs;
+      }
+    }
+  }
 }
 
 const allButtons = document.querySelectorAll("button");
