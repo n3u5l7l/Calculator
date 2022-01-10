@@ -79,6 +79,29 @@ function starts(e)
       document.querySelector(".display").textContent = number1+ '+';
     }
   }
+  else if (this.textContent==="-" || e.keyCode===189)
+  {
+    let prevOper = operations;
+    operations = "subtract";
+    document.querySelector(".display").textContent+="-";
+    number1turn = false;
+    number2turn = true;
+    document.querySelector(".decimal").disabled=false;
+    if(!keyCodesCheck[190]){keyCodesCheck[190]=true;}
+    if (number1 && number2)
+    {
+      switch(prevOper)
+      {
+        case 'mulitply':number1=(Number(number1)*number2).toFixed(2);break;
+        case 'divide':number1=(Number(number1)/number2).toFixed(2);break;
+        case 'add':number1=(Number(number1)+number2).toFixed(2);break;
+        case 'subtract':number1=(Number(number1)-number2).toFixed(2);break;
+        default: number1=number1;
+      }
+      number2=null;
+      document.querySelector(".display").textContent = number1+ "-";
+    }
+  }
 }
 
 const allButtons = document.querySelectorAll("button");
