@@ -44,7 +44,6 @@ body{
 
 .buttons{
     flex:1;
-    border:2px solid;
     display:flex;
     flex-direction: column;
 }
@@ -54,6 +53,7 @@ body{
 }
 button{
     font-size:25px;
+    border:2px gray;
 }
 
 .calculatorandtips{
@@ -71,4 +71,17 @@ button{
 ul{
     margin:0;
    padding:0;
+}
+
+.command{
+    background-color:aliceblue;
+}
+
+.numbers{
+    background-color: white;
+}
+
+.erase{
+    background-color: orange;
+    font-weight: bolder;
 }
