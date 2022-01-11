@@ -176,6 +176,46 @@ function starts(e)
     if(!keyCodesCheck[190]){keyCodesCheck[190]=true;}
     
   }
+  else if (this.textContent === '<-' || e.keyCode === 8)
+  {
+    if(document.querySelector(".display").textContent[document.querySelector(".display").textContent-1]==='.')
+    {
+      document.querySelector(".decimal").disabled=false;
+      if(!keyCodesCheck[190]){keyCodesCheck[190]=true;}
+    }
+    let operaters;
+    switch(operations)
+    {
+      case 'mulitply':operaters='*';break;
+      case 'divide':operaters='/';break;
+      case 'add':operaters='+';break;
+      case 'subtract':operaters='-';break;
+      default: operaters=operaters;
+    }
+    let stringN = document.querySelector(".display").textContent.split(operaters);
+    if(operaters && !stringN[1])
+    {
+       let stringsNum = document.querySelector(".display").textContent.substr(0,document.querySelector(".display").textContent.length-1);
+       document.querySelector(".display").textContent=stringsNum;
+    }
+    else if (!stringN[1])
+    {
+      let stringsNum = stringN[0].substr(0, stringN[0].length-1);
+      document.querySelector(".display").textContent=stringsNum;
+    }
+    else
+    {
+
+      let stringsNum = stringN[1].substr(0, stringN[1].length-1);
+      document.querySelector(".display").textContent=stringN[0] + operaters + stringsNum;
+    }
+  } 
+  else if (this.textContent ==='.' || e.keyCode ===190)
+  {
+    document.querySelector(".display").textContent+='.';
+    document.querySelector(".decimal").disabled=true;
+    if(e.keyCode){keyCodesCheck[e.keyCode] = false;}
+  }
   else
   {
     let inputs;
