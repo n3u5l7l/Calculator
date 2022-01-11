@@ -149,6 +149,33 @@ function starts(e)
       document.querySelector(".display").textContent = number1+ "/";
     }
   }
+  else if (this.textContent === '=' || e.keyCode===13)
+  {
+    if(operations && number2)
+    {
+      sum = operate(Number(number1),operations,number2);
+      document.querySelector(".display").textContent=sum;
+      number1=sum;
+      number2=null;
+      number1turn = true;
+      number2turn = false;
+      operations=null;
+      document.querySelector(".decimal").disabled=false;
+      if(!keyCodesCheck[190]){keyCodesCheck[190]=true;}
+    }
+  }
+  else if (this.textContent==='C' || e.keyCode===67)
+  {
+    number1=null;
+    number2=null;
+    operations=null;
+    number1turn=true;
+    number2turn=false;
+    document.querySelector(".display").textContent="";
+    document.querySelector(".decimal").disabled=false;
+    if(!keyCodesCheck[190]){keyCodesCheck[190]=true;}
+    
+  }
   else
   {
     let inputs;
