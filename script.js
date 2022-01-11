@@ -52,7 +52,8 @@ let number2turn = false;
 const keyCodesCheck = {187:true, 189:true, 56:true, 191:true, 13:true, 67:true, 8:true, 190:true}
 function starts(e)
 {
-  if (!this.textContent && !keyCodesCheck[e.keyCode] && (e.keyCode < 48 || e.keyCode > 57))
+  console.log(this.classList);
+  if ((!this.textContent && !keyCodesCheck[e.keyCode] && (e.keyCode < 48 || e.keyCode > 57)) || (!e.keyCode) && this.classList.value==="empty")
   {
     return;
   }
@@ -100,6 +101,52 @@ function starts(e)
       }
       number2=null;
       document.querySelector(".display").textContent = number1+ "-";
+    }
+  }
+  else if (this.textContent==="*" || e.keyCode===56)
+  {
+    let prevOper = operations;
+    operations = "mulitply";
+    document.querySelector(".display").textContent+="*";
+    number1turn = false;
+    number2turn = true;
+    document.querySelector(".decimal").disabled=false;
+    if(!keyCodesCheck[190]){keyCodesCheck[190]=true;}
+    if (number1 && number2)
+    {
+      switch(prevOper)
+      {
+        case 'mulitply':number1=(Number(number1)*number2).toFixed(2);break;
+        case 'divide':number1=(Number(number1)/number2).toFixed(2);break;
+        case 'add':number1=(Number(number1)+number2).toFixed(2);break;
+        case 'subtract':number1=(Number(number1)-number2).toFixed(2);break;
+        default: number1=number1;
+      }
+      number2=null;
+      document.querySelector(".display").textContent = number1+ "*";
+    }
+  }
+  else if (this.textContent==="/" || e.keyCode===191)
+  {
+    let prevOper = operations;
+    operations = "divide";
+    document.querySelector(".display").textContent+="/";
+    number1turn = false;
+    number2turn = true;
+    document.querySelector(".decimal").disabled=false;
+    if(!keyCodesCheck[190]){keyCodesCheck[190]=true;}
+    if (number1 && number2)
+    {
+      switch(prevOper)
+      {
+        case 'mulitply':number1=(Number(number1)*number2).toFixed(2);break;
+        case 'divide':number1=(Number(number1)/number2).toFixed(2);break;
+        case 'add':number1=(Number(number1)+number2).toFixed(2);break;
+        case 'subtract':number1=(Number(number1)-number2).toFixed(2);break;
+        default: number1=number1;
+      }
+      number2=null;
+      document.querySelector(".display").textContent = number1+ "/";
     }
   }
   else
@@ -159,7 +206,13 @@ function starts(e)
   }
 }
 
+function animation(e)
+{
+  const allButtons = document.querySelectorAll("button");
+
+}
 const allButtons = document.querySelectorAll("button");
 allButtons.forEach(buts=>buts.addEventListener("click", starts))
+//allButtons.forEach(buts=>buts.addEventListener("click", animation))
 
 window.addEventListener("keydown", starts);
